@@ -1,0 +1,488 @@
+ /* ______________________PRINCIPIO___________________ */
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #111;
+  color: #fff;
+}
+  /* ______________________________MENU__________________________ */
+ 
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+/* Contenedor del logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre imagen y texto */
+}
+
+/* Imagen del logo */
+.logo-img {
+  height: 50px;  /* Ajusta tamaño de la imagen */
+  width: auto;
+  object-fit: contain; /* Para que no se deforme */
+}
+
+/* Texto del logo */
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #007bff;
+}
+
+body {
+  scroll-behavior: smooth;
+  padding-top: 60px; /* Para no ocultar contenido bajo la navbar */
+}
+/* ______________________________PRIMERA PARTE____________________________________ */
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url('pp.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9));
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 2s ease-out;
+}
+
+.content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: rgb(255, 255, 255);
+}
+
+.content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  background: #0b6192ff;
+  color: white;
+  cursor: pointer;
+  transition :background 0.3s;
+}
+
+button:hover {
+  background: #073b66ff;
+}
+
+.section {
+  padding: 5rem 2rem;
+  text-align: center;
+  background: #222;
+  background-image: url('pp.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.section.alt {
+  background: #333;
+}
+/* __________________________CARTAS___________________________ */
+.card {
+  background: #222;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 300px;
+  height: 400px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg) rotateX(0deg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.card:hover {
+  box-shadow: 0 0 40px #0b6192ff;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  pointer-events: none;
+}
+.card-section h2{
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #007bff;
+  justify-content: center;
+}
+
+.card-content {
+  padding: 1.5rem;
+  pointer-events: none;
+}
+
+.card-content h3 {
+  margin-bottom: 0.5rem;
+  color: #007bff;
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  color: rgb(255, 255, 255);
+}
+.botoncito{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  perspective: 1200px;
+}
+/* ______________________mapa______________________________*/
+
+.map-section {
+  padding: 4rem 2rem;
+  background: #111;
+  color: #fff;
+  text-align: center;
+}
+
+.map-section h2 {
+   font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.map-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(247, 37, 133, 0.3);
+}
+
+/* ______________________servicios______________________________*/
+
+/* Contenedor general de servicios */
+.services {
+  padding: 60px 20px;
+  background: #000000;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Título */
+.services h2 {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+/* Contenedor flex para las tarjetas de servicios */
+.service-list {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Cada servicio */
+.service {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 25px 20px;
+  flex: 1 1 280px; /* flexible y con ancho mínimo */
+  max-width: 320px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+/* Efecto hover */
+.service:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Título de cada servicio */
+.service h3 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* Descripción */
+.service p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+}
+/*________galeria___________ */
+
+.galeria {
+  padding: 60px 20px;
+  background-color: #000000;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.galeria h2 {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.galeria-item {
+  background: #f8f9fa;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.galeria-item:hover {
+  transform: scale(1.05);
+}
+
+.galeria-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.galeria-item p {
+  padding: 15px 10px;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+/*________opiniones___________ */
+.opiniones {
+  background-color: #000000;
+  padding: 2em;
+  margin-top: 2em;
+}
+
+.opiniones h2 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.opiniones form {
+  max-width: 600px;
+  margin: 0 auto 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.opiniones input[type="text"],
+.opiniones textarea {
+  padding: 0.5em;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.rating span {
+  font-size: 2em;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.rating span:hover,
+.rating span:hover ~ span,
+.rating .selected,
+.rating .selected ~ span {
+  color: gold;
+}
+
+.opiniones-lista {
+  max-width: 600px;
+  margin: 0 auto;
+  
+}
+
+.opinion {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.opinion h4 {
+  margin: 0;
+  color: #333;
+}
+
+.opinion .estrellas {
+  color: gold;
+  margin-bottom: 0.5em;
+}
+
+
+/* ===== FOOTER BASE ===== */
+.footer {
+  background-color: #111;
+  color: #fff;
+  padding: 2em 1em;
+  font-size: 0.95em;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2em;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1 1 250px;
+  min-width: 200px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+  color: #007bff;
+  margin-bottom: 0.5em;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5em;
+}
+
+.footer-section ul li a {
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2em;
+  border-top: 1px solid #000000;
+  padding-top: 1em;
+  color: #aaa;
+  font-size: 0.85em;
+}
+
+/* ===== FOOTER RESPONSIVE ===== */
+@media screen and (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-section {
+    max-width: 100%;
+  }
+
+  .footer-section ul {
+    padding: 0;
+  }
+}
+
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

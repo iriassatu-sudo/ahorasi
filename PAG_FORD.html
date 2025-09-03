@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Exhibición de Carros Toyota - Taller Reyes</title>
+<!-- Fuente Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  /* Reset básico */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000ff;
+    margin: 0;
+    padding: 0;
+    color: #222;
+  }
+  header {
+    background-color: #000000ff;
+    color: #0964a5ff;
+    text-align: center;
+    padding: 20px;
+  }
+  header h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    margin: 0;
+    font-weight: 600;
+  }
+  .header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+  .header-content img {
+    height: 70px;
+    width: auto;
+  }
+  /* ______________________________MENU__________________________ */
+ 
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+/* Contenedor del logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre imagen y texto */
+}
+
+/* Imagen del logo */
+.logo-img {
+  height: 50px;  /* Ajusta tamaño de la imagen */
+  width: auto;
+  object-fit: contain; /* Para que no se deforme */
+}
+
+/* Texto del logo */
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #007bff;
+}
+
+body {
+  scroll-behavior: smooth;
+  padding-top: 60px; /* Para no ocultar contenido bajo la navbar */
+}
+  /* Galería */
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    padding: 25px 15px 0 15px;
+  }
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    width: 300px;
+    height: 200px;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+  }
+  .gallery-item:hover img {
+    transform: scale(1.1);
+  }
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 10px 5px;
+    text-align: center;
+    font-size: 1rem;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .gallery-item:hover .overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Texto instrucción */
+  .instruction-text {
+    text-align: center;
+    font-style: italic;
+    color: #444;
+    margin: 20px auto 40px auto;
+    font-size: 1.1rem;
+    max-width: 700px;
+    user-select: none;
+  }
+  .instruction-text p {
+    display: inline-block;
+    background-color: #f0f0f0;
+    padding: 12px 20px;
+    border-radius: 25px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+  }
+  .instruction-text p:hover {
+    background-color: #e0e0e0;
+  }
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    animation: fadeIn 0.4s ease;
+  }
+  .modal-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: slideIn 0.4s ease;
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+  .modal-content {
+    max-width: 80vw;
+    max-height: 70vh;
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  }
+  #modalCaption {
+    text-align: center;
+    color: #fff;
+    font-size: 1.8rem;
+    margin-top: 15px;
+    font-weight: 600;
+  }
+  #modalProblem {
+    color: #ddd;
+    margin-top: 12px;
+    font-size: 1.2rem;
+    max-width: 80vw;
+    text-align: center;
+  }
+  #modalSolutions {
+    max-width: 80vw;
+    margin: 15px auto 0 auto;
+    padding-left: 20px;
+    color: #ddd;
+    font-size: 1.1rem;
+    list-style-type: disc;
+  }
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    user-select: none;
+  }
+  .close:hover {
+    color: #f44336;
+  }
+
+  /* ===== FOOTER BASE ===== */
+.footer {
+  background-color: #111;
+  color: #fff;
+  padding: 2em 1em;
+  font-size: 0.95em;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2em;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1 1 250px;
+  min-width: 200px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+  color: #007bff;
+  margin-bottom: 0.5em;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5em;
+}
+
+.footer-section ul li a {
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2em;
+  border-top: 1px solid #000000;
+  padding-top: 1em;
+  color: #aaa;
+  font-size: 0.85em;
+}
+
+/* ===== FOOTER RESPONSIVE ===== */
+@media screen and (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-section {
+    max-width: 100%;
+  }
+
+  .footer-section ul {
+    padding: 0;
+  }
+}
+  /* Animations */
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  @keyframes slideIn {
+    from {transform: translateY(50px); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+  }
+  /* Responsive */
+  @media (max-width: 768px) {
+    .gallery-item {
+      width: 90vw;
+      height: auto;
+      aspect-ratio: 3 / 2;
+    }
+    #modalCaption {
+      font-size: 1.5rem;
+    }
+    #modalProblem {
+      font-size: 1rem;
+    }
+    #modalSolutions {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+ <header class="navbar">
+  
+  <div class="logo">Taller Reyes</div>
+  <nav>
+    <ul>
+  <li><a href="index.html">Inicio</a></li>
+  <li><a href="index.html">marcas</a></li>
+  <li><a href="index.html">Ubicación</a></li>
+  <li><a href="index.html#servicios">¿Qué hacemos?</a></li>
+  <li><a href="index.html#galeria">trabajos recientes</a></li>
+  <li><a href="index.html#opiniones">opiniones</a></li>
+</ul>
+  </nav>
+</header>
+<header>
+  <div class="header-content">
+    <img src="foooord logo.jpg" alt="Toyota Logo" />
+    <h1>FORD</h1>
+  </div>
+</header>
+
+<div class="gallery">
+  <div class="gallery-item" onclick="openModal(
+    'ford escape.webp', 
+    'FORD ESCAPE', 
+    'Aire acondicionado débil en verano debido a gas bajo o filtro sucio.', 
+    ['Revisar y recargar gas refrigerante', 'Limpiar o cambiar filtro del sistema', 'Revisar fugas en mangueras']
+  )">
+    <img src="ford escape.webp" alt="Toyota RAV4" />
+    <div class="overlay">Problemas comunes: Aire acondicionado débil</div>
+  </div>
+
+  <div class="gallery-item" onclick="openModal(
+    'ford ranger.webp', 
+    'FORD RANGER', 
+    'Pérdida de gas refrigerante causada por fugas en mangueras o conexiones.', 
+    ['Revisar todas las conexiones', 'Reparar o reemplazar mangueras dañadas', 'Realizar recarga de gas refrigerante']
+  )">
+    <img src="ford ranger.webp" alt="Toyota Prado" />
+    <div class="overlay">Problemas comunes: Pérdida de gas</div>
+  </div>
+
+  <div class="gallery-item" onclick="openModal(
+    'ford explorer.webp', 
+    'FORD EXPLORER', 
+    'Compresor ruidoso por desgaste de rodamientos o falta de lubricación.', 
+    ['Revisar estado del compresor', 'Lubricar o reemplazar componentes', 'Consultar con técnico especializado']
+  )">
+    <img src="ford explorer.webp" alt="Toyota Fortuner" />
+    <div class="overlay">Problemas comunes: Compresor ruidoso</div>
+  </div>
+
+  <div class="gallery-item" onclick="openModal(
+    'f-150 reptor.webp', 
+    'FORD F-150 RAPTOR', 
+    'Olor a humedad en cabina debido a hongos en el evaporador.', 
+    ['Limpiar el evaporador', 'Revisar sistema de drenaje de condensados', 'Usar desinfectantes específicos para aire acondicionado']
+  )">
+    <img src="f-150 reptor.webp" alt="Toyota Hilux" />
+    <div class="overlay">Problemas comunes: Olor a humedad</div>
+  </div>
+</div>
+
+<div class="instruction-text">
+  <p>🛠️ Toca una imagen para descubrir los problemas comunes asociados y explorar las soluciones recomendadas. Así podrás entender mejor cómo mantenemos tu vehículo en óptimas condiciones.</p>
+</div>
+
+<!-- Modal -->
+<div id="imageModal" class="modal" onclick="outsideClick(event)">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <div class="modal-content-container">
+    <img id="modalImg" class="modal-content" alt="Imagen ampliada" />
+    <div id="modalCaption"></div>
+    <p id="modalProblem"></p>
+    <ul id="modalSolutions"></ul>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>TALLER REYES</h3>
+      <p>
+        Somos una empresa que no solo hace tapados para la cabeza, 
+        también te damos una personalidad.
+      </p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Enlaces</h4>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Contacto</h4>
+      <p>Email: refrigeracion@gmail.com</p>
+      <p>Celular: +504 9982-4971</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2025 TALLER REYES. Todos los derechos reservados.
+  </div>
+</footer>
+
+<script>
+function openModal(imgSrc, title, problem, solutions) {
+  const modal = document.getElementById("imageModal");
+  document.getElementById("modalImg").src = imgSrc;
+  document.getElementById("modalCaption").innerText = title;
+  document.getElementById("modalProblem").innerText = problem;
+
+  const ul = document.getElementById("modalSolutions");
+  ul.innerHTML = ""; // Limpiar contenido previo
+
+  solutions.forEach(solution => {
+    const li = document.createElement("li");
+    li.innerText = solution;
+    ul.appendChild(li);
+  });
+
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("imageModal").style.display = "none";
+}
+
+function outsideClick(event) {
+  if (event.target.id === "imageModal") {
+    closeModal();
+  }
+}
+</script>
+
+</body>
+</html>
